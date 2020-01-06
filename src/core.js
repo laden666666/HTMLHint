@@ -20,12 +20,14 @@ class HTMLHint {
   addRule(rule) {
     this.rules[rule.id] = rule;
   }
+  // 核心函数
   verify(html, ruleset) {
     if (ruleset === undefined || Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset;
     }
 
     // parse inline ruleset
+    // 初始化各个规则
     html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(
       all,
       strRuleset
@@ -53,6 +55,8 @@ class HTMLHint {
 
     var rules = this.rules,
       rule;
+
+    // 将规则应用到parser上面
     for (var id in ruleset) {
       rule = rules[id];
       if (rule !== undefined && ruleset[id] !== false) {

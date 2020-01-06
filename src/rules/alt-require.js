@@ -1,3 +1,5 @@
+// 每个规则是一个策略模式，这里只读一个
+// image 控件必须设置 alt属性
 export default {
   id: 'alt-require',
   description:
@@ -9,6 +11,7 @@ export default {
         mapAttrs = parser.getMapAttrs(event.attrs),
         col = event.col + tagName.length + 1,
         selector;
+      // 确定是否是img
       if (tagName === 'img' && !('alt' in mapAttrs)) {
         reporter.warn(
           'An alt attribute must be present on <img> elements.',
